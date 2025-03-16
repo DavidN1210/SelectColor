@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Electrónica Bosco</h1>
+    <p>
+    <select name="producto" id="producto">
+        <option id="elija" value="elija">Elija una</option>
+        <option id="movil" value="movil">Móvil</option>
+        <option id="tablet" value="tablet">Tablet</option>
+    </select>
+    <p>
+    <label for="">Color: </label><input type="color" id="color" disabled>
+    <p>
+    <input type="submit" id="enviodatos">
+    
+
+    <script>
+
+        document.getElementById('producto').addEventListener('change',muestraColor);
+
+        function muestraColor(){
+            let producto = document.getElementById('producto').value;
+
+            if(producto=="movil"){
+                document.getElementById('color').removeAttribute("disabled");
+            }
+
+            if(producto=="tablet"){
+                document.getElementById('color').setAttribute("disabled");
+            }
+
+        }
+
+    </script>
+    
+</body>
+</html>
