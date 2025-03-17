@@ -4,25 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        #label-provincia{
+            visibility: hidden;
+        }
+    </style>
+
+
 </head>
 <body>
 
     <h1>Electrónica Bosco</h1>
     <p>
-    <select name="producto" id="producto">
-        <option id="elija" value="elija">Elija una</option>
-        <option id="movil" value="movil">Móvil</option>
-        <option id="tablet" value="tablet">Tablet</option>
-    </select>
-    <p>
-    <label for="">Color: </label><input type="color" id="color" disabled>
-    <p>
-    <input type="submit" id="enviodatos">
+    <form action="procesa.php" method="get">
+        <select name="producto" id="producto">
+            <option id="elija" value="elija">Elija una</option>
+            <option id="movil" value="movil">Móvil</option>
+            <option id="tablet" value="tablet">Tablet</option>
+        </select>
+        <p>
+        <label for="">Color: </label><input type="color" id="color" disabled>
+        <p>
+
+        <label for="">País</label>
+        <select name="" id="pais">
+            <option value="ed">Elija Destino</option>
+            <option value="es">España</option>
+            <option value="fue">Fuera de España</option>
+        </select>
+        <p>
+        <label for="" id="label-provincia">Provincia
+        <select name="provincia" id="provincia">
+            <option value="to">Toledo</option>
+            <option value="cr">Ciudad Real</option>
+            <option value="al">Albacete</option>
+            <option value="cu">Cuenca</option>
+            <option value="gu">Guadalajara</option>
+        </select>
+        </label>
+    </form>
+    
+    <input type="submit" id="enviodatos" value="Enviar">
     
 
     <script>
 
         document.getElementById('producto').addEventListener('change',muestraColor);
+        document.getElementById('enviodatos').addEventListener('click', validacionProductos);
+        document.getElementById('pais').addEventListener('change',muestraProvincia)
+
+
+        function muestraProvincia(){
+            if(document.querySelector("#pais").value === "es"){
+                document.querySelector("#label-provincia").style.visibility = "visible";
+            }else{
+                document.querySelector("#label-provincia").style.visibility = "hidden";
+            }
+        }
+
+        function validacionProductos(){
+            let producto = document.getElementById('producto').value;
+            if(producto == "elija"){
+                alert("Por favor, selecciona un producto");
+                return false;
+            }
+            return true;
+        }
 
         function muestraColor(){
             let producto = document.getElementById('producto').value;
