@@ -29,13 +29,14 @@
 
         <label for="">País</label>
         <select name="" id="pais">
-            <option value="ed">Elija Destino</option>
+            <option value="">Elija Destino</option>
             <option value="es">España</option>
             <option value="fue">Fuera de España</option>
         </select>
         <p>
         <label for="" id="label-provincia">Provincia
         <select name="provincia" id="provincia">
+            <option value="">Elige una Provincia</option>
             <option value="to">Toledo</option>
             <option value="cr">Ciudad Real</option>
             <option value="al">Albacete</option>
@@ -51,7 +52,7 @@
     <script>
 
         document.getElementById('producto').addEventListener('change',muestraColor);
-        document.getElementById('enviodatos').addEventListener('click', validacionProductos);
+        document.getElementById('enviodatos').addEventListener('click', validacionFormulario);
         document.getElementById('pais').addEventListener('change',muestraProvincia)
 
 
@@ -63,12 +64,21 @@
             }
         }
 
-        function validacionProductos(){
+        function validacionFormulario(){
             let producto = document.getElementById('producto').value;
             if(producto == "elija"){
                 alert("Por favor, selecciona un producto");
                 return false;
             }
+            if(document.getElementById('pais').value === ""){
+                alert("Debe elegir un pais");
+                return false;
+            }
+            if(document.getElementById('pais').value === "es" && document.getElementById('provincia').value === ""){
+                alert("Debe elegir una provincia");
+                return false;
+            }
+
             return true;
         }
 
